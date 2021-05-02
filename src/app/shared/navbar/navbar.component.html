@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark mb-2">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" routerLink="/inicio">
+      <!-- I need to do this name dinamic -->
+      Client Orders Project
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/order-entry">
+            <i class="far fa-plus-square"></i> Order Entry
+          </a>
+        </li>
+        <!-- Maybe We don't need this -->
+        <!-- <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/inicio">
+            <i class="far fa-check-square"></i> Order Confirmation
+          </a>
+        </li> -->
+      </ul>
+    </div>
+
+  </div>
+</nav>
