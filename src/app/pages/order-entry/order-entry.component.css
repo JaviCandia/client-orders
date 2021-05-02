@@ -1,0 +1,56 @@
+/* Graphic accordion colors */
+.bg-orange-100{
+    background-color: #FFCCBC;
+}
+
+.bg-orange-900{
+    background-color: #BF360C;
+}
+
+.text-orange-900{
+    color: #BF360C;
+}
+
+/* Rack accordion colors */
+.bg-green-100{
+    background-color: #B9F6CA;
+}
+
+.bg-green-900{
+    background-color: #1B5E20;
+}
+
+.text-green-900{
+    color: #1B5E20;
+}
+
+/* Chillers accordion colors */
+.bg-aqua-100{
+    background-color: #B2DFDB;
+}
+
+.bg-aqua-800{
+    background-color: #00695C;
+}
+
+.text-aqua-800{
+    color: #00695C;
+}
+
+/* Freezers accordion colors */
+.bg-blue-100{
+    background-color: #BBDEFB;
+}
+
+.bg-blue-900{
+    background-color: #0D47A1;
+}
+
+.text-blue-900{
+    color: #0D47A1;
+}
+
+/* Button colors */
+.bg-orange-700{
+    background-color: #F57C00;
+}

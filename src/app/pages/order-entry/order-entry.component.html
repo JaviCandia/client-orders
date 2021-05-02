@@ -1,22 +1,27 @@
 <div class="container animate__animated animate__fadeIn h-100">
-  <h1 class="display-6 mb-4">Some message here</h1>
+  <h1 class="display-6 mb-4">Create a new Order Entry</h1>
 
   <!-- Basic info inputs -->
   <div class="form-floating mb-2">
-    <input class="form-control" id="storeCode" placeholder="MBD">
+    <input class="form-control" id="storeCode" placeholder="MBD" [(ngModel)]="storeCode">
     <label for="storeCode">Store Code</label>
   </div>
   <div class="form-floating mb-2">
-    <input class="form-control" id="requestedBy" placeholder="Mark Smith">
+    <input class="form-control" id="requestedBy" placeholder="Mark Smith" [(ngModel)]="requestedBy">
     <label for="requestedBy">Requested by</label>
   </div>
   <div class="form-floating mb-2">
-    <input class="form-control" id="email" placeholder="mark@wholefoods.com">
+    <input class="form-control" id="email" placeholder="mark@wholefoods.com" [(ngModel)]="email">
     <label for="email">Email</label>
   </div>
   <div class="form-floating mb-3">
-    <input class="form-control" id="Phone" placeholder="407-938-7000">
+    <input class="form-control" id="Phone" placeholder="407-938-7000" [(ngModel)]="phone">
     <label for="phone">Phone</label>
+  </div>
+  <div class="d-flex justify-content-end mb-2">
+    <button type="button" class="btn bg-orange-700 w-50 text-white" (click)="clearBasicFields()">
+      Clear fields
+    </button>
   </div>
 
   <!-- Store info Section -->
@@ -34,7 +39,6 @@
     </tbody>
   </table>
 
-
   <!-- Shipping Section -->
   <table class="table" *ngIf="shippingInfo">
     <thead>
@@ -50,7 +54,6 @@
     </tbody>
   </table>
 
-
   <!-- Why we need this section? is related to the accordions?-->
   <!-- Units Section -->
   <table class="table" *ngIf="shippingInfo">
@@ -65,156 +68,180 @@
 
   <!-- We need to use components! -->
   <div class="accordion accordion-flush" id="accordionExample">
-    <div class="accordion-item">
+    <!-- Floor Graphics Accordion -->
+    <div class="accordion-item mb-2">
       <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button collapsed bg-warning text-white" type="button" data-bs-toggle="collapse"
+        <button class="accordion-button collapsed bg-orange-100 text-orange-900" type="button" data-bs-toggle="collapse"
           data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
           Floor Graphics
         </button>
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne">
         <table class="table">
-          <thead class="bg-warning text-white">
+          <thead class="bg-orange-900 text-white">
             <tr>
-              <td scope="col">Unit</td>
-              <td scope="col">Model</td>
-              <td scope="col">Labels</td>
+              <td scope="col">Zone</td>
+              <td scope="col">Quantity</td>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let info of rowArray">
-              <td>1</td>
-              <td>Uline</td>
-              <td>
-                <input class="form-check-input bg-warning" type="checkbox" id="rackCheck">
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2"></td>
-              <td class="d-flex flex-row-reverse">
-                <div class="form-floating w-50">
-                  <input class="form-control" id="rackTotal" placeholder="$0.0">
-                  <label for="rackTotal">Total:</label>
-                </div>
-              </td>
+            <tr *ngFor="let info of rowArray; let i = index">
+              <td>Pickup</td>
+              <td>{{ i+1 * 2 }}</td>
             </tr>
           </tbody>
         </table>
+        <div class="d-flex flex-row-reverse">
+          <div class="form-floating w-50">
+            <input type="number" class="form-control" id="graphicTotal" placeholder="$0.0" [(ngModel)]="graphicTotal">
+            <label for="graphicTotal">Total:</label>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="accordion-item">
+    <!-- Racks Accordion -->
+    <div class="accordion-item mb-2">
       <h2 class="accordion-header" id="headingTwo">
-        <button class="accordion-button collapsed bg-success text-white" type="button" data-bs-toggle="collapse"
+        <button class="accordion-button collapsed bg-green-100 text-green-900" type="button" data-bs-toggle="collapse"
           data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           Racks
         </button>
       </h2>
       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
         <table class="table">
-          <thead class="bg-success text-white">
+          <thead class="bg-green-900 text-white">
             <tr>
               <td scope="col">Unit</td>
               <td scope="col">Model</td>
-              <td scope="col">Labels</td>
+              <td scope="col">Zone</td>
+              <td scope="col">Labels side 1</td>
+              <td scope="col">Labels side 2</td>
+              <td scope="col">Topper</td>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let info of rowArray">
-              <td>1</td>
+            <tr *ngFor="let info of rowArray; let i = index">
+              <td>{{ i+1 }}</td>
               <td>Uline</td>
+              <td>{{ (i+1)*2 }}</td>
               <td>
-                <input class="form-check-input bg-success" type="checkbox" id="rackCheck">
+                <input class="form-check-input bg-green-900" type="checkbox" id="rackCheck">
               </td>
-            </tr>
-            <tr>
-              <td colspan="2"></td>
-              <td class="d-flex flex-row-reverse">
-                <div class="form-floating w-50">
-                  <input class="form-control" id="rackTotal" placeholder="$0.0">
-                  <label for="rackTotal">Total:</label>
-                </div>
+              <td>
+                <input class="form-check-input bg-green-900" type="checkbox" id="rackCheck">
+              </td>
+              <td>
+                <input class="form-check-input bg-green-900" type="checkbox" id="rackCheck">
               </td>
             </tr>
           </tbody>
         </table>
+        <div class="d-flex flex-row-reverse">
+          <div class="form-floating w-50">
+            <input type="number" class="form-control" id="rackTotal" placeholder="$0.0" [(ngModel)]="rackTotal">
+            <label for="rackTotal">Total:</label>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="accordion-item">
+    <!-- Chillers Accordion -->
+    <div class="accordion-item mb-2">
       <h2 class="accordion-header" id="headingThree">
-        <button class="accordion-button collapsed bg-info text-white" type="button" data-bs-toggle="collapse"
+        <button class="accordion-button collapsed bg-aqua-100 text-aqua-800" type="button" data-bs-toggle="collapse"
           data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           Chillers
         </button>
       </h2>
       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
         <table class="table">
-          <thead class="bg-info text-white">
+          <thead class="bg-aqua-800 text-white">
             <tr>
               <td scope="col">Unit</td>
               <td scope="col">Model</td>
-              <td scope="col">Labels</td>
+              <td scope="col">Zone</td>
+              <td scope="col">Exterior labels</td>
+              <td scope="col">Interior labels</td>
+              <td scope="col">Topper</td>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let info of rowArray">
-              <td>1</td>
-              <td>Uline</td>
+            <tr *ngFor="let info of rowArray; let i = index">
+              <td>{{ i+1 }}</td>
+              <td>True</td>
+              <td>{{ (i+1)*2 }}</td>
               <td>
-                <input class="form-check-input bg-info" type="checkbox" id="rackCheck">
+                <input class="form-check-input bg-aqua-800" type="checkbox" id="rackCheck">
               </td>
-            </tr>
-            <tr>
-              <td colspan="2"></td>
-              <td class="d-flex flex-row-reverse">
-                <div class="form-floating w-50">
-                  <input class="form-control" id="rackTotal" placeholder="$0.0">
-                  <label for="rackTotal">Total:</label>
-                </div>
+              <td>
+                <input class="form-check-input bg-aqua-800" type="checkbox" id="rackCheck">
+              </td>
+              <td>
+                <input class="form-check-input bg-aqua-800" type="checkbox" id="rackCheck">
               </td>
             </tr>
           </tbody>
         </table>
+        <div class="d-flex flex-row-reverse">
+          <div class="form-floating w-50">
+            <input type="number" class="form-control" id="chillerTotal" placeholder="$0.0" [(ngModel)]="chillerTotal">
+            <label for="chillerTotal">Total:</label>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="accordion-item">
+    <!-- Freezers Accordion -->
+    <div class="accordion-item mb-2">
       <h2 class="accordion-header" id="headingFounr">
-        <button class="accordion-button collapsed bg-primary text-white" type="button" data-bs-toggle="collapse"
+        <button class="accordion-button collapsed bg-blue-100 text-blue-900" type="button" data-bs-toggle="collapse"
           data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
           Freezers
         </button>
       </h2>
       <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour">
         <table class="table">
-          <thead class="bg-primary text-white">
+          <thead class="bg-blue-900 text-white">
             <tr>
               <td scope="col">Unit</td>
               <td scope="col">Model</td>
+              <td scope="col">Zone</td>
               <td scope="col">Labels</td>
+              <td scope="col">Topper</td>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let info of rowArray">
-              <td>1</td>
-              <td>Uline</td>
+            <tr *ngFor="let info of rowArray; let i = index">
+              <td>{{ i+1 }}</td>
+              <td>True</td>
+              <td>{{ (i+1)*2 }}</td>
               <td>
-                <input class="form-check-input bg-primary" type="checkbox" id="rackCheck">
+                <input class="form-check-input bg-blue-900" type="checkbox" id="rackCheck">
               </td>
-            </tr>
-            <tr>
-              <td colspan="2"></td>
-              <td class="d-flex flex-row-reverse">
-                <div class="form-floating w-50">
-                  <input class="form-control" id="rackTotal" placeholder="$0.0">
-                  <label for="rackTotal">Total:</label>
-                </div>
+              <td>
+                <input class="form-check-input bg-blue-900" type="checkbox" id="rackCheck">
               </td>
             </tr>
           </tbody>
         </table>
+        <div class="d-flex flex-row-reverse">
+          <div class="form-floating w-50">
+            <input type="number" class="form-control" id="freezerTotal" placeholder="$0.0" [(ngModel)]="freezerTotal">
+            <label for="freezerTotal">Total:</label>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+
+  <!-- I need to use reactive forms to reduce the binding data of the totals of each accordion -->
+  <div class="d-flex justify-content-end mb-2">
+    <div class="form-floating w-50">
+      <input type="number" class="form-control" id="orderTotal" placeholder="$0.0" disabled
+      [ngModel]="graphicTotal + rackTotal + chillerTotal + freezerTotal">
+      <label for="orderTotal">Order Total:</label>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end mb-2">
+    <button type="button" class="btn bg-orange-700 w-50 text-white" (click)="submit()">Submit</button>
   </div>
 </div>
