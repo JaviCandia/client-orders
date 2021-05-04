@@ -3,7 +3,7 @@
 
   <!-- Basic info inputs -->
   <div class="form-floating mb-2">
-    <input class="form-control" id="storeCode" placeholder="MBD" [(ngModel)]="storeCode">
+    <input class="form-control" id="storeCode" placeholder="MBD" [(ngModel)]="storeCode" (input)="searchStore()">
     <label for="storeCode">Store Code</label>
   </div>
   <div class="form-floating mb-2">
@@ -25,17 +25,20 @@
   </div>
 
   <!-- Store info Section -->
-  <table class="table" *ngIf="storeInfo">
+  <table class="table">
     <thead>
       <tr>
         <td scope="col" class="fs-4">Store Info:</td>
         <td scope="col" class="text-end"><a href="">Edit Store Info</a></td>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let info of storeInfo">
-        <td colspan="2">{{ info }}</td>
-      </tr>
+    <tbody *ngFor="let store of storeInfo">
+      <tr colspan="2"><b>Code:</b>{{ store.storeCode }}</tr>
+      <tr colspan="2"><b>Street:</b>{{ store.street }}</tr>
+      <tr colspan="2"><b>Name:</b>{{ store.city }}</tr>
+      <tr colspan="2"><b>Zip Code:</b>{{ store.zipCode }}</tr>
+      <tr colspan="2"><b>Phone Number:</b>{{ store.phoneNumber }}</tr>
+      <hr>
     </tbody>
   </table>
 
@@ -47,10 +50,14 @@
         <td scope="col" class="text-end"><a href="">Edit Shipping Info</a></td>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let info of shippingInfo">
-        <td colspan="2">{{ info }}</td>
-      </tr>
+    <tbody *ngFor="let Shipping of shippingInfo">
+      <tr colspan="2"><b>Code:</b>{{ Shipping.storeCode }}</tr>
+      <tr colspan="2"><b>Name:</b>{{ Shipping.name }}</tr>
+      <tr colspan="2"><b>Street:</b>{{ Shipping.street }}</tr>
+      <tr colspan="2"><b>City:</b>{{ Shipping.city }}</tr>
+      <tr colspan="2"><b>Zip Code:</b>{{ Shipping.zipCode }}</tr>
+      <tr colspan="2"><b>Phone Number:</b>{{ Shipping.phoneNumber }}</tr>
+      <hr>
     </tbody>
   </table>
 
@@ -236,7 +243,7 @@
   <div class="d-flex justify-content-end mb-2">
     <div class="form-floating w-50">
       <input type="number" class="form-control" id="orderTotal" placeholder="$0.0" disabled
-      [ngModel]="graphicTotal + rackTotal + chillerTotal + freezerTotal">
+        [ngModel]="graphicTotal + rackTotal + chillerTotal + freezerTotal">
       <label for="orderTotal">Order Total:</label>
     </div>
   </div>
